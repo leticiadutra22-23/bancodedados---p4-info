@@ -1,0 +1,46 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "TB_BOOKS" (
+	"ID"	INTEGER NOT NULL,
+	"TITLE"	TEXT NOT NULL,
+	"WRITER"	TEXT NOT NULL,
+	PRIMARY KEY("ID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "TB_CLIENTS" (
+	"ID"	INTEGER NOT NULL,
+	"NAME"	TEXT NOT NULL,
+	"BUY_DATE"	TEXT NOT NULL,
+	PRIMARY KEY("ID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "TB_BUY_BOOKS" (
+	"ID"	INTEGER NOT NULL,
+	"CLIENT_ID"	INTEGER NOT NULL,
+	"BOOK_ID"	INTEGER NOT NULL,
+	PRIMARY KEY("ID" AUTOINCREMENT),
+	FOREIGN KEY("BOOK_ID") REFERENCES "TB_BOOKS"("ID"),
+	FOREIGN KEY("CLIENT_ID") REFERENCES "TB_CLIENTS"("ID")
+);
+INSERT INTO "TB_BOOKS" ("ID","TITLE","WRITER") VALUES (1,'Um Ano Solitário','Alice Oseman'),
+ (2,'A Chuva Imóvel','Campos de Carvalho'),
+ (3,'As Crônicas do Gelo e do Fogo - A Guerra dos Tronos','George R.R Martin'),
+ (4,'Sem Amor','Alice Oseman'),
+ (5,'Star Wars - Marcas da Guerra','Chuck Wendig'),
+ (6,'É Assim Que Acaba','Colleen Hoover'),
+ (7,'Outros Jeitos de Usar a Boca','Rupi Kaur'),
+ (8,'O Que o Sol Faz Com as Flores','Rupi Kaur'),
+ (9,'As Vantages de Ser Invisível','Stephen Chbosky'),
+ (10,'Os Dois Morrem No Final','Adam Silvera');
+INSERT INTO "TB_CLIENTS" ("ID","NAME","BUY_DATE") VALUES (1,'ELLIOT HERMESON','12/01/2022'),
+ (2,'ANDY WILSON','08/10/2022'),
+ (3,'WADE WEELER','17/09/2022'),
+ (4,'ANGELA BONSOIR','05/07/2022'),
+ (5,'DOROTHY INÁCIO','21/04/2022'),
+ (6,'MARGAERY LONGFIELD','04/10/2022'),
+ (7,'HENRY OCTAVIUS','05/02/2022');
+INSERT INTO "TB_BUY_BOOKS" ("ID","CLIENT_ID","BOOK_ID") VALUES (1,4,1),
+ (2,2,2),
+ (3,7,3),
+ (4,3,8),
+ (5,1,10),
+ (6,5,4),
+ (7,6,5);
+COMMIT;
