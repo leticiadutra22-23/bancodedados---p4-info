@@ -82,3 +82,5 @@ data.each("SELECT TB_MATRICULA.id AS matricula_id, TB_ALUNO.name AS aluno_name, 
 data.each("SELECT TB_PROFESSOR_DISCIPLINA.id AS profsd_id, TB_PROFESSOR.name AS professor_name, TB_DISCIPLINA.name AS disciplina_name FROM TB_PROFESSOR, TB_DISCIPLINA INNER JOIN TB_PROFESSOR_DISCIPLINA ON TB_PROFESSOR.id = TB_PROFESSOR_DISCIPLINA.professor_id AND TB_DISCIPLINA.id = TB_PROFESSOR_DISCIPLINA.disciplina_id", function(err, row) {
     console.log(row.profsd_id + ": (" + row.professor_name + ", " + row.disciplina_name + ")");
 });
+
+data.close();
